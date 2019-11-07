@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 });
 
 const ProfileComponent = ({user}) => {
-    console.log(user)
+    // console.log(user)
   const classes = useStyles();
 
   return (
@@ -26,13 +26,13 @@ const ProfileComponent = ({user}) => {
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
-          height="140"
+          height="180"
           image={`/images/users/user${user.id}.png`}
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h6" component="h5">
-            {/* {user.email} */}
+          <Typography variant="body2" color="textSecondary" component="p">
+            {user.email}
           </Typography>
           <Typography gutterBottom variant="h5" component="h2">
             {user.name}

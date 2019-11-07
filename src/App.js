@@ -2,13 +2,13 @@ import React from 'react';
 import { Route, Switch, /*Redirect*/ } from 'react-router-dom';
 import './App.css';
 
-import Navbar from './components/navbar/navbar.component'
+// import Navbar from './components/navbar/navbar.component'
 import Profiles from './components/profiles/profiles.component'
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      {/* <Navbar/> */}
       <div style={{margin: '30px'}}>
         <Switch>
           {/* <Route exact path="/" component /> */}

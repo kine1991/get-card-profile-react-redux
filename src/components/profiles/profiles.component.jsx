@@ -1,82 +1,16 @@
-// import React, { Component } from 'react'
-// import axios from 'axios';
-// import ProfileComponent from '../profile/profile.component'
-
-// // import {useStyles} from './profiles.styles'
-// import { makeStyles } from '@material-ui/core/styles';
-
-
-// const useStyles = makeStyles({
-//     profiles: {
-//       maxWidth: 205,
-//     },
-// });
-
-// const classes = useStyles();
-
-// class ProfilesComponent extends Component {
-
-//     state = {
-//         users: []
-//     }
-//     componentDidMount(){
-//         console.log(process.env)
-//         axios.get('https://jsonplaceholder.typicode.com/users')
-//             .then(users => {
-//                 this.setState({
-//                     users: users.data
-//                 }) 
-//             });
-//     }
-
-//     render() {
-//         // const classes = useStyles();
-//         const {users} = this.state;
-//         return (
-//             <div>
-//             {/* <div className={classes.profiles}> */}
-                // {
-                //     users.map((user, i) => {
-                //         return (
-                //             <ProfileComponent
-                //                 key={i}
-                //                 user={user}
-                //             />
-                //         )
-                //     })
-                // }
-//                 ProfilesComponent
-//             </div>
-//         )
-//     }
-// }
-
-// export default ProfilesComponent;
-
-
-import React from 'react'
+import React from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux'
+import TextField from '@material-ui/core/TextField';
 
-import ProfileComponent from '../profile/profile.component'
-import { makeStyles } from '@material-ui/core/styles';
-import Scroll from '../scroll/scroll.component'
-
-const useStyles = makeStyles({
-    profiles: {
-        //   maxWidth: 205,
-        //   background: 'red'
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap'
-    },
-    // profile: {
-    //     flex: '700px'
-    // }
-});
+import ProfileComponent from '../profile/profile.component';
+import Scroll from '../scroll/scroll.component';
+import { useStyles } from './profiles.styles'
+import { searchProfile } from '../../redux/profile/profile.action'
 
 
 
-const Profiles = () => {
+const Profiles = ({searchField, onSearchProfile}) => {
     const classes = useStyles();
     const [users, setUsers] = React.useState([]);
 
@@ -85,28 +19,44 @@ const Profiles = () => {
             .then(users => {
                 setUsers(users.data)
                 console.log(users.data)
-                // this.setState({
-                //     users: users.data
-                // }) 
             });
     }, []);
+    const filteredProfile = users.filter(user => {
+        return user.name.toLowerCase().includes(searchField.toLowerCase());
+    })
+    // console.log(searchField)
+    // console.log(filteredProfile)
 
     return (
-        <div className={classes.profiles}> 
-            <Scroll>
-                {
-                    users.map((user, i) => {
-                        return (
-                            <ProfileComponent
-                                key={i}
-                                user={user}
-                            />
-                        )
-                    })
-                }
-            </Scroll>
+        <Scroll>
+        <div className={classes.profiles}>             
+            <TextField style={{margin: '4rem'}} fullWidth  onChange={onSearchProfile} className={classes.textField} label="Outlined" margin="normal" variant="outlined"/>
+    
+            {
+                filteredProfile.map((user, i) => {
+                    return (
+                        <ProfileComponent
+                            key={i}
+                            user={user}
+                        />
+                    )
+                })
+            }
         </div>
+        </Scroll>
     )
+};
+
+const mapStateToProps = state => {
+    return {
+        searchField: state.profile.searchField
+    }
 }
 
-export default Profiles
+const mapDispatchToProps = dispatch => {
+    return {
+        onSearchProfile: (e) => dispatch(searchProfile(e.target.value))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profiles);
