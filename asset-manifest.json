@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/get-card-profile-react-redux/static/css/main.5991f105.chunk.css",
-    "main.js": "/get-card-profile-react-redux/static/js/main.a381261d.chunk.js",
-    "main.js.map": "/get-card-profile-react-redux/static/js/main.a381261d.chunk.js.map",
+    "main.js": "/get-card-profile-react-redux/static/js/main.c116dd5d.chunk.js",
+    "main.js.map": "/get-card-profile-react-redux/static/js/main.c116dd5d.chunk.js.map",
     "runtime-main.js": "/get-card-profile-react-redux/static/js/runtime-main.6d816d27.js",
     "runtime-main.js.map": "/get-card-profile-react-redux/static/js/runtime-main.6d816d27.js.map",
-    "static/js/2.50c3a772.chunk.js": "/get-card-profile-react-redux/static/js/2.50c3a772.chunk.js",
-    "static/js/2.50c3a772.chunk.js.map": "/get-card-profile-react-redux/static/js/2.50c3a772.chunk.js.map",
+    "static/js/2.34fb6f17.chunk.js": "/get-card-profile-react-redux/static/js/2.34fb6f17.chunk.js",
+    "static/js/2.34fb6f17.chunk.js.map": "/get-card-profile-react-redux/static/js/2.34fb6f17.chunk.js.map",
     "index.html": "/get-card-profile-react-redux/index.html",
-    "precache-manifest.2274c7d868c7d96ed816f147041c8454.js": "/get-card-profile-react-redux/precache-manifest.2274c7d868c7d96ed816f147041c8454.js",
+    "precache-manifest.d0ff9e03c0122283d5fd0fc01953a210.js": "/get-card-profile-react-redux/precache-manifest.d0ff9e03c0122283d5fd0fc01953a210.js",
     "service-worker.js": "/get-card-profile-react-redux/service-worker.js",
     "static/css/main.5991f105.chunk.css.map": "/get-card-profile-react-redux/static/css/main.5991f105.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.6d816d27.js",
-    "static/js/2.50c3a772.chunk.js",
+    "static/js/2.34fb6f17.chunk.js",
     "static/css/main.5991f105.chunk.css",
-    "static/js/main.a381261d.chunk.js"
+    "static/js/main.c116dd5d.chunk.js"
   ]
 }
