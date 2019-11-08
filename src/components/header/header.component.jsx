@@ -40,6 +40,12 @@ const HeaderComponent = () => {
                 <li className={classes.list}>
                     <Link to="/profiles">Profiles</Link>
                 </li>
+                <li className={classes.list}>
+                    <Link to="/articles">Articles</Link>
+                </li>
+                <li className={classes.list}>
+                    <Link to="/create-article">Create Article</Link>
+                </li>
             </ul>
         </div>
     )
