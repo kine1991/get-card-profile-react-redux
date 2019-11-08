@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios'
+import { connect } from 'react-redux'
 import { Link, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // import Icon from '@material-ui/core/Icon';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { getProfilesAsync } from '../../redux/profile/profile.action'
 
 const useStyles = makeStyles({
   container: {
@@ -21,37 +22,25 @@ const useStyles = makeStyles({
   card: {
     maxWidth: 600,
     margin: '30px',
-    // display: 'flex',
-    // justifyContent: 'center'
   },
 });
 
-const ProfileComponent = (props) => {
+const ProfileComponent = ({user, onGetProfile}) => {
   const classes = useStyles();
-  const [user, setUser] = React.useState();
   const {id} = useParams();
-    // console.log('props', props)
 
-    React.useEffect(() => {
-      axios.get(`https://jsonplaceholder.typicode.com/users?id=${id}`)
-          .then(user => {
-              setUser(user.data[0])
+  React.useEffect(() => {
+    onGetProfile(id);
+  }, []);
 
-              if(!user.data.length){
-                // console.log(user.data.length)
-                props.history.push('/profiles')
-              }
-          })
-          .catch(error => {
-            console.log(error)
-          });;
-    }, []);
-
+    // return (
+    //   <h1>Helo</h1>
+    // )
+console.log(user)
   return !user ? 
   <CircularProgress color="secondary" /> : (
     <div className={classes.container}>
       <Card className={classes.card}>
-
         <CardActionArea >
           <CardMedia
             component="img"
@@ -83,4 +72,16 @@ const ProfileComponent = (props) => {
   );
 }
 
-export default ProfileComponent;
+const mapStateToProps = state => {
+  return {
+    user: state.profile.users[0]    
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onGetProfile: (id) => dispatch(getProfilesAsync(id))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileComponent);

@@ -11,7 +11,7 @@ import { searchProfile, getProfilesAsync } from '../../redux/profile/profile.act
 
 const Profiles = ({searchField, users, onSearchProfile, onGetProfiles}) => {
     const classes = useStyles();
-console.log(users)
+// console.log(users)
     React.useEffect(() => {
         onGetProfiles()
     }, []);

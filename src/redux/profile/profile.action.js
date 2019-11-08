@@ -19,9 +19,11 @@ export const getProfilesFailure = (error) => ({
 });
 
 export const getProfilesAsync = id => {
+    let url
+    id ? url = `https://jsonplaceholder.typicode.com/users?id=${id}` : url = 'https://jsonplaceholder.typicode.com/users'
     return dispatch => {
         dispatch(getProfilesStart());
-        axios.get('https://jsonplaceholder.typicode.com/users')
+        axios.get(url)
         .then(users => dispatch(getProfilesSuccess(users.data)))
         .catch(error => dispatch(getProfilesFailure(error)))
     }
