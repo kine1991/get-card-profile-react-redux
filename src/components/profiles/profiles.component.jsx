@@ -3,7 +3,7 @@ import axios from 'axios';
 import {connect} from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 
-import ProfileComponent from '../profile/profile.component';
+import ProfileCardComponent from '../profile-card/profile-card.component';
 import Scroll from '../scroll/scroll.component';
 import { useStyles } from './profiles.styles'
 import { searchProfile } from '../../redux/profile/profile.action'
@@ -35,7 +35,7 @@ const Profiles = ({searchField, onSearchProfile}) => {
             {
                 filteredProfile.map((user, i) => {
                     return (
-                        <ProfileComponent
+                        <ProfileCardComponent
                             key={i}
                             user={user}
                         />
