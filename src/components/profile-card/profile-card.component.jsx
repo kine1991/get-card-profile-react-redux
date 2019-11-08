@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link /*, useParams */} from 'react-router-dom';
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -16,7 +16,7 @@ const ProfileCardComponent = ({user}) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} style={{background: 'linear-gradient(to right, #fdfbfb, #ebedee)'}}>
       <CardActionArea>
         <CardMedia
           component="img"

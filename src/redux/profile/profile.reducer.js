@@ -1,7 +1,10 @@
 import profileActionTypes from './profile.types';
 
 const INITIAL_STATE = {
-    searchField: ''
+    searchField: '',
+    isFetching: false,
+    users: [],
+    error: undefined
 };
 
 const profileReducer = (state = INITIAL_STATE, action) => {
@@ -10,7 +13,23 @@ const profileReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 searchField: action.payload,
-                xx: 'ff'
+            }
+        case profileActionTypes.GET_PROFILE_START:
+            return {
+                ...state,
+                isFetching: true,
+            }
+        case profileActionTypes.GET_PROFILES_SUCCESS:
+            return {
+                ...state,
+                users: action.payload,
+                isFetching: false,
+            }
+        case profileActionTypes.GET_PROFILES_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                isFetching: false,
             }
         default:
             return state;

@@ -1,61 +1,55 @@
 import React from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 
 import ProfileCardComponent from '../profile-card/profile-card.component';
-import Scroll from '../scroll/scroll.component';
-import { useStyles } from './profiles.styles'
-import { searchProfile } from '../../redux/profile/profile.action'
+// import Scroll from '../scroll/scroll.component';
+import { useStyles } from './profiles.styles';
+import { searchProfile, getProfilesAsync } from '../../redux/profile/profile.action';
 
 
 
-const Profiles = ({searchField, onSearchProfile}) => {
+const Profiles = ({searchField, users, onSearchProfile, onGetProfiles}) => {
     const classes = useStyles();
-    const [users, setUsers] = React.useState([]);
-
+console.log(users)
     React.useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(users => {
-                setUsers(users.data)
-                console.log(users.data)
-            });
+        onGetProfiles()
     }, []);
+
     const filteredProfile = users.filter(user => {
         return user.name.toLowerCase().includes(searchField.toLowerCase());
     })
-    // console.log(searchField)
-    // console.log(filteredProfile)
 
     return (
-        <Scroll>
+        // <Scroll> </Scroll>  #fdfbfb → #ebedee
         <div className={classes.profiles}>             
-            <TextField style={{margin: '4rem'}} fullWidth  onChange={onSearchProfile} className={classes.textField} label="Outlined" margin="normal" variant="outlined"/>
-    
+            <TextField style={{margin: '4rem'}} fullWidth  onChange={onSearchProfile} className={classes.textField} label="Search" margin="normal" variant="outlined"/>
             {
                 filteredProfile.map((user, i) => {
                     return (
                         <ProfileCardComponent
                             key={i}
-                            user={user}
+                            user={user} 
                         />
                     )
                 })
             }
         </div>
-        </Scroll>
     )
 };
 
 const mapStateToProps = state => {
     return {
-        searchField: state.profile.searchField
+        searchField: state.profile.searchField,
+        users: state.profile.users,
+        isFetching: state.profile.isFetching
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSearchProfile: (e) => dispatch(searchProfile(e.target.value))
+        onSearchProfile: (e) => dispatch(searchProfile(e.target.value)),
+        onGetProfiles: () => dispatch(getProfilesAsync())
     }
 };
 

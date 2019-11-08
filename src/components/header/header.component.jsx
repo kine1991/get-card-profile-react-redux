@@ -24,9 +24,6 @@ const useStyles = makeStyles({
     textDecoration: 'none',
     color: 'black'
   }
-//   "a": {
-//       "color": "black"
-//   }
 });
 
 const HeaderComponent = () => {
@@ -37,14 +34,13 @@ const HeaderComponent = () => {
                 <li className={classes.list}>
                     <Link to="/">Home</Link>
                 </li>
-                <li className={classes.link} className={classes.list}>
+                <li className={classes.list}>
                     <Link to="/about">About</Link>
                 </li>
                 <li className={classes.list}>
                     <Link to="/profiles">Profiles</Link>
                 </li>
             </ul>
-            {/* <hr /> */}
         </div>
     )
 }
