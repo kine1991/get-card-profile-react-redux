@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5fa001094619fef443116f7679a7f074",
+    "revision": "cfd596f256c9e6a04ec76dc523e91217",
     "url": "/get-card-profile-react-redux/index.html"
   },
   {
-    "revision": "726bc3992d652c845327",
+    "revision": "22998bf805f1aa83b188",
     "url": "/get-card-profile-react-redux/static/css/main.5991f105.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/get-card-profile-react-redux/static/js/2.34fb6f17.chunk.js"
   },
   {
-    "revision": "726bc3992d652c845327",
-    "url": "/get-card-profile-react-redux/static/js/main.c116dd5d.chunk.js"
+    "revision": "22998bf805f1aa83b188",
+    "url": "/get-card-profile-react-redux/static/js/main.98908321.chunk.js"
   },
   {
     "revision": "f22090f604786676bad2",
