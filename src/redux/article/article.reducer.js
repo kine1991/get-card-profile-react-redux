@@ -5,12 +5,16 @@ const INITIAL_STATE = {
 };
 
 const articleReducer = (state = INITIAL_STATE, action) => {
-    console.log('reducer', action.payload)
     switch(action.type){
         case articleActionTypes.GET_ARTICLES_FROM_LS:
             return {
                 ...state,
                 dataFromLS: action.payload
+            }
+        case articleActionTypes.CREATE_ARTICLE:
+            return {
+                ...state,
+                dataFromLS: [action.payload, ...state.dataFromLS]
             }
         default:
             return state

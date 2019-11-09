@@ -1,79 +1,22 @@
-// import React, { Component } from 'react'
-
-// class CreateArticleComponent extends Component {
-
-//     state = {
-//         title: '',
-//         body: ''
-//     }
-
-//     handleChangeText = event => {
-//         this.setState()
-//         setText(event.target.value);
-//     };
-//     handleChangeBody = event => {
-//         setBody(event.target.value);
-//     };
-//     onHandleSubmit = event => {
-//         event.preventDefault();
-//         const article = {
-//             id: Date.now(),
-//             text,
-//             body
-//         }
-//         setArticles([...articles, article])
-
-//     };
-
-//     render() {
-//         return (
-//             <form onSubmit={this.onHandleSubmit}>
-//                 <TextField
-//                     label="title"
-//                     margin="normal"
-//                     fullWidth
-//                     onChange={this.handleChangeText}
-//                     value={this.text}
-//                 />
-//                 <TextField
-//                     label="body"
-//                     margin="normal"
-//                     fullWidth
-//                     onChange={this.handleChangeBody}
-//                     value={this.body}
-//                 />
-//                 <Button type="submit">Default</Button>
-//             </form>
-//         )
-//     }
-// }
-
-// export default CreateArticleComponent;
-
-
 import React from 'react';
+import { connect } from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const CreateArticleComponent = () => {
+import { getArticleFromLS, createArticle } from '../../redux/article/article.action';
+
+const CreateArticleComponent = ({articlesFromLS ,onGetArticleFromLS, onCreateArticle}) => {
     const [title, setTitle] = React.useState('');
     const [body, setBody] = React.useState('');
-    const [articles, setArticles] = React.useState([]);
 
     React.useEffect(() => {
-        setArticles(JSON.parse(localStorage.getItem('articles')))
-        // console.log(JSON.parse(localStorage.getItem('articles'))) 
-    }, []);
+        onGetArticleFromLS(JSON.parse(localStorage.getItem('articles')))
+    }, [onGetArticleFromLS]);
 
     React.useEffect(() => {
-        // console.log('d',articles);
-        if(articles){
-            // console.log('articles');
-            localStorage.setItem('articles', JSON.stringify(articles));
-        } else{
-            // console.log(articles);
-        }
-    }, [articles]);
+        localStorage.setItem('articles', JSON.stringify(articlesFromLS))
+    }, [articlesFromLS]);
+
 
     const handleChangeTitle = event => {
         setTitle(event.target.value);
@@ -88,7 +31,9 @@ const CreateArticleComponent = () => {
             title,
             body
         }
-        setArticles([...articles, article])
+        console.log('createArticle', article)
+        onCreateArticle(article)
+        // setArticles([article, ...articles])
 
     };
 
@@ -98,26 +43,32 @@ const CreateArticleComponent = () => {
                 label="title"
                 margin="normal"
                 fullWidth
+                variant="outlined"
                 onChange={handleChangeTitle}
                 value={title}
             />
             <TextField
                 label="body"
                 margin="normal"
+                multiline={true}
+                rows={8}
+                rowsMax={18}
+                variant="outlined"
                 fullWidth
                 onChange={handleChangeBody}
                 value={body}
             />
-            <Button type="submit">Default</Button>
+            <Button type="submit" variant="outlined" color="primary">Create Article</Button>
+            {/* <Button variant="outlined" color="primary">Create Article</Button> */}
 
-            {articles.length ? 
-                articles.map(item => {
-                    console.log('item', item)
+            {articlesFromLS.length ? 
+                articlesFromLS.map(item => {
+                    // console.log('item', item)
                     return (
-                        <div key={item.id}>
+                        <div key={item.id} style={{border: '1px solid black'}}>
                             <h1>{item.title}</h1>
-                            <p>{item.body}</p>
-
+                            {/* <p>{item.body}</p> */}
+                            <Button variant="outlined"  color="secondary">Delete Article</Button>
                         </div>
                     )
                 })
@@ -128,4 +79,16 @@ const CreateArticleComponent = () => {
     )
 }
 
-export default CreateArticleComponent;
+const mapStateToProps = state => {
+    return {
+        articlesFromLS: state.article.dataFromLS
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        onGetArticleFromLS: (data) => dispatch(getArticleFromLS(data)),
+        onCreateArticle: (data) => dispatch(createArticle(data))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateArticleComponent);

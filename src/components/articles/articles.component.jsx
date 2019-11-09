@@ -39,8 +39,8 @@ const ArticlesComponent = ({articlesFromLS, onGetArticleFromLS}) => {
 
     return (
         <div className={classes.container}>
-            {articlesFromLS.dataFromLS.length ? 
-                articlesFromLS.dataFromLS.map(item => {
+            {articlesFromLS.length ? 
+                articlesFromLS.map(item => {
                     return (
                         <div key={item.id}>
                             <h1>{item.title}</h1>
@@ -58,7 +58,7 @@ const ArticlesComponent = ({articlesFromLS, onGetArticleFromLS}) => {
 
 const mapStateToProps = state => {
     return {
-        articlesFromLS: state.article
+        articlesFromLS: state.article.dataFromLS
     }
 };
 
