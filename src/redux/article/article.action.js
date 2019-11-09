@@ -10,3 +10,8 @@ export const createArticle = (data) => ({
     type: articleActionTypes.CREATE_ARTICLE,
     payload: data
 });
+
+export const deleteArticle = (id) => ({
+    type: articleActionTypes.DELETE_ARTICLE,
+    payload: id
+});

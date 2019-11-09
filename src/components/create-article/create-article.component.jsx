@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-import { getArticleFromLS, createArticle } from '../../redux/article/article.action';
+import { getArticleFromLS, createArticle, deleteArticle } from '../../redux/article/article.action';
 
-const CreateArticleComponent = ({articlesFromLS ,onGetArticleFromLS, onCreateArticle}) => {
+const CreateArticleComponent = ({articlesFromLS ,onGetArticleFromLS, onCreateArticle, onDeleteArticle}) => {
     const [title, setTitle] = React.useState('');
     const [body, setBody] = React.useState('');
 
@@ -31,44 +33,23 @@ const CreateArticleComponent = ({articlesFromLS ,onGetArticleFromLS, onCreateArt
             title,
             body
         }
-        console.log('createArticle', article)
         onCreateArticle(article)
-        // setArticles([article, ...articles])
-
     };
 
     return (
         <form onSubmit={onHandleSubmit}>
-            <TextField
-                label="title"
-                margin="normal"
-                fullWidth
-                variant="outlined"
-                onChange={handleChangeTitle}
-                value={title}
-            />
-            <TextField
-                label="body"
-                margin="normal"
-                multiline={true}
-                rows={8}
-                rowsMax={18}
-                variant="outlined"
-                fullWidth
-                onChange={handleChangeBody}
-                value={body}
-            />
+            <TextField label="title" margin="normal" fullWidth variant="outlined" onChange={handleChangeTitle} value={title}/>
+            <TextField label="body" margin="normal" multiline={true} rows={8} rowsMax={18} variant="outlined" fullWidth onChange={handleChangeBody} value={body}/>
             <Button type="submit" variant="outlined" color="primary">Create Article</Button>
             {/* <Button variant="outlined" color="primary">Create Article</Button> */}
 
             {articlesFromLS.length ? 
                 articlesFromLS.map(item => {
-                    // console.log('item', item)
                     return (
-                        <div key={item.id} style={{border: '1px solid black'}}>
-                            <h1>{item.title}</h1>
-                            {/* <p>{item.body}</p> */}
-                            <Button variant="outlined"  color="secondary">Delete Article</Button>
+                        <div key={item.id} style={{border: '1px solid black', display: 'flex', /*justifyContent: 'center', alignItems: 'center'*/}}>
+                            <h1 style={{flex: 4}} >{item.title}</h1>
+                            <IconButton style={{}} aria-label="delete" onClick={() => onDeleteArticle(item.id)}><DeleteIcon /></IconButton>
+                            {/* <button onClick={() => deleteArticle(item)}>delete</button> */}
                         </div>
                     )
                 })
@@ -87,7 +68,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onGetArticleFromLS: (data) => dispatch(getArticleFromLS(data)),
-        onCreateArticle: (data) => dispatch(createArticle(data))
+        onCreateArticle: (data) => dispatch(createArticle(data)),
+        onDeleteArticle: (data) => dispatch(deleteArticle(data))
     }
 }
 
