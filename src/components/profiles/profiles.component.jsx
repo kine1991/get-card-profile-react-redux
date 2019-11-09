@@ -14,7 +14,8 @@ const Profiles = ({searchField, users, onSearchProfile, onGetProfiles}) => {
 // console.log(users)
     React.useEffect(() => {
         onGetProfiles()
-    }, []);
+    }, [onGetProfiles]);
+    // }, []);
 
     const filteredProfile = users.filter(user => {
         return user.name.toLowerCase().includes(searchField.toLowerCase());

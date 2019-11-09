@@ -31,7 +31,8 @@ const ProfileComponent = ({user, onGetProfile}) => {
 
   React.useEffect(() => {
     onGetProfile(id);
-  }, []);
+  }, [onGetProfile, id]);
+  // }, []);
 
     // return (
     //   <h1>Helo</h1>

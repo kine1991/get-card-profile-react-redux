@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+
+import { getArticleFromLS } from '../../redux/article/article.action'
 
 
 const useStyles = makeStyles({
@@ -10,10 +13,12 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 'auto auto',
-        fontSize: '1.6rem',
-        textAlign: 'justify',
+        fontSize: '1.4rem',
+        textAlign: 'left',
         fontWeight: '100',
-        lineHeight: '1.2',
+        lineHeight: '1.5',
+        wordSpacing: '3px',
+        // letterSpacing: '1px',
         fontFamily: 'Roboto'
         // font-family: 'Roboto', sans-serif;
     //   boxShadow: '0 0 10px rgba(0,0,0,0.5)',
@@ -24,22 +29,18 @@ const useStyles = makeStyles({
     },
   });
 
-const ArticlesComponent = () => {
+const ArticlesComponent = ({articlesFromLS, onGetArticleFromLS}) => {
+    console.log(articlesFromLS)
     const classes = useStyles();
-    const [articles, setArticles] = React.useState([]);
 
     React.useEffect(() => {
-        setArticles(JSON.parse(localStorage.getItem('articles')))
-    }, []);
-
-    // React.useEffect(() => {
-    //     setArticles()
-    // }, [articles]);
+        onGetArticleFromLS(JSON.parse(localStorage.getItem('articles')))
+    }, [onGetArticleFromLS]);
 
     return (
         <div className={classes.container}>
-            {articles.length ? 
-                articles.map(item => {
+            {articlesFromLS.dataFromLS.length ? 
+                articlesFromLS.dataFromLS.map(item => {
                     return (
                         <div key={item.id}>
                             <h1>{item.title}</h1>
@@ -55,4 +56,16 @@ const ArticlesComponent = () => {
     )
 }
 
-export default ArticlesComponent;
+const mapStateToProps = state => {
+    return {
+        articlesFromLS: state.article
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onGetArticleFromLS: (data) => dispatch(getArticleFromLS(data))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticlesComponent);
