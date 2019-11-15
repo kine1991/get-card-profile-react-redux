@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   });
 
 const ArticlesComponent = ({articlesFromLS, onGetArticleFromLS}) => {
-    console.log(articlesFromLS)
+    // console.log(articlesFromLS)
     const classes = useStyles();
 
     React.useEffect(() => {
