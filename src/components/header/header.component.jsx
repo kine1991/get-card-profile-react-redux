@@ -46,6 +46,12 @@ const HeaderComponent = () => {
                 <li className={classes.list}>
                     <Link to="/create-article">Create Article</Link>
                 </li>
+                <li className={classes.list}>
+                    <Link to="/sign-in">Sign In</Link>
+                </li>
+                <li className={classes.list}>
+                    <Link to="/sign-up">Sign Up</Link>
+                </li>
             </ul>
         </div>
     )
