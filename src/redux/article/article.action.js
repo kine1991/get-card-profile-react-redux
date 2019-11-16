@@ -1,29 +1,7 @@
 import articleActionTypes from './article.types';
 import { firestore } from '../../firebase/firebase.utils'
-// import userActionTypes from '../user/user.types';
-
-// export const getArticleFromLS = (data) => ({
-//     type: articleActionTypes.GET_ARTICLES_FROM_LS,
-//     payload: data
-// });
 
 
-// export const createArticle = (data) => ({
-//     type: articleActionTypes.CREATE_ARTICLE,
-//     payload: data
-// });
-
-// const deleteArticle = (id) => ({
-//     type: articleActionTypes.DELETE_ARTICLE,
-//     payload: id
-// });
-
-
-// const createArticleStart = () => {
-//     return {
-//         type: articleActionTypes.CREATE_ARTICLE_START
-//     }
-// };
 const createArticleStart = () => ({
     type: articleActionTypes.CREATE_ARTICLE_START
 });
