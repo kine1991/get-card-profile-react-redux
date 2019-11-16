@@ -18,6 +18,7 @@ export const getCurrentUserFailure = (error) => ({
 
 export const getCurrentUserAsync = () => {
     return dispatch => {
+        dispatch(getCurrentUserStart());
         auth.onAuthStateChanged(userData => {
             if(userData){
                 dispatch(getCurrentUserSuccess({uid: userData.uid, displayName: userData.displayName, email: userData.email, phoneNumber: userData.phoneNumber, photoURL: userData.photoURL}));

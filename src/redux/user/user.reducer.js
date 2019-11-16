@@ -22,7 +22,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case userActionTypes.GET_CURRENT_USER_FAILURE:
             return {
                 ...state,
-                isFetching: true,
+                isFetching: false,
                 error: action.payload
             }
         default:

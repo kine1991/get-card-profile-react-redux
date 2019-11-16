@@ -15,7 +15,7 @@ import SignUpComponent from './components/sign-up/sign-up.component';
 
 import { getCurrentUserAsync } from './redux/user/user.action';
 
-export const App = ({currentUserData, onGetCurrentUser}) => {
+export const App = ({currentUserData, isFetching, onGetCurrentUser}) => {
   
   React.useEffect(() => {
     onGetCurrentUser()
@@ -25,13 +25,9 @@ export const App = ({currentUserData, onGetCurrentUser}) => {
       localStorage.setItem('articles', JSON.stringify(DEFAULT_ARTICLES_FOR_LS))
     }
   }, []);
-  
   return (
     <div className="App">
-      {/* {currentUserData ? currentUserData.uid : 'null'} */}
-      {/* <Navbar/> */}
-      <HeaderComponent/>
-
+      <HeaderComponent currentUserData={currentUserData} isFetching={isFetching} />
       <div style={{margin: '30px'}}>
         <Switch>
           <Route exact path="/sign-in" component={SignInComponent} />
@@ -50,7 +46,8 @@ export const App = ({currentUserData, onGetCurrentUser}) => {
 
 const mapStateToProps = (state) => {
   return {
-    currentUserData: state.user.userData
+    currentUserData: state.user.userData,
+    isFetching: state.user.isFetching
   }
 };
 
