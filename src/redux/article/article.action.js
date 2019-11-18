@@ -44,6 +44,7 @@ const getArticlesFailure = (error) => ({
 
 export const getArticlesAsync = () => {
     return dispatch => {
+        console.log('getArticlesAsync')
         dispatch(getArticlesStart());
         const collectionRef = firestore.collection('articles');
         collectionRef.get().then(querySnapshot => {
@@ -57,6 +58,45 @@ export const getArticlesAsync = () => {
         });
     }
 };
+
+// -------------------------------------
+// -------------------------------------
+const getArticleStart = () => ({
+    type: articleActionTypes.GET_ARTICLE_START
+});
+
+const getArticleSuccess = (data) => ({
+    type: articleActionTypes.GET_ARTICLE_SUCCESS,
+    payload: data
+});
+
+const getArticleFailure = (error) => ({
+    type: articleActionTypes.GET_ARTICLE_FAILURE,
+    payload: error
+});
+
+export const getArticleAsync = (id) => {
+    console.log(id)
+    return dispatch => {
+        console.log('docRef')
+        dispatch(getArticleStart());
+        const docRef = firestore.collection('articles').doc(id);
+        docRef.get().then(querySnapshot => {
+            console.log('querySnapshot')
+            console.log(querySnapshot)
+            // let articles = []
+            // querySnapshot.forEach(doc => {
+            //     articles.push({id: doc.id, ...doc.data()})
+            // })
+            dispatch(getArticleSuccess('article'));
+        }).catch(error => {
+            dispatch(getArticleFailure(error));
+        });
+    }
+};
+
+// -------------------------------------
+// -------------------------------------
 
 const deleteArticlesStart = () => ({
     type: articleActionTypes.DELETE_ARTICLE_START

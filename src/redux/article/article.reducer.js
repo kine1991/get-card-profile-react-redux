@@ -3,6 +3,7 @@ import articleActionTypes from './article.types';
 const INITIAL_STATE = {
     // dataFromLS: [],
     articles: [],
+    article: null,
     isFetching: false,
     isFetchingCreate: false,
     isFetchingDelete: false,
@@ -28,6 +29,25 @@ const articleReducer = (state = INITIAL_STATE, action) => {
                 error: action.payload,
                 isFetching: false
             }
+            
+        case articleActionTypes.GET_ARTICLE_START:
+            return {
+                ...state,
+                isFetching: true
+            }
+        case articleActionTypes.GET_ARTICLE_SUCCESS:
+            return {
+                ...state,
+                article: action.payload,
+                isFetching: false
+            }
+        case articleActionTypes.GET_ARTICLE_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                isFetching: false
+            }
+
         case articleActionTypes.CREATE_ARTICLE_START:
             return {
                 ...state,

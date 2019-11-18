@@ -7,6 +7,7 @@ import HeaderComponent from './components/header/header.component';
 import Profiles from './components/profiles/profiles.component';
 import Profile from './components/profile/profile.component';
 import ArticlesComponent from './components/articles/articles.component';
+import ArticleComponent from './components/article/article.component';
 import CreateArticlesComponent from './components/create-article/create-article.component';
 import NotFoundComponent from './components/not-found/not-found.component';
 import DEFAULT_ARTICLES_FOR_LS from './data/dataForLS';
@@ -24,7 +25,7 @@ export const App = ({currentUserData, isFetching, onGetCurrentUser}) => {
     if(!articles){
       localStorage.setItem('articles', JSON.stringify(DEFAULT_ARTICLES_FOR_LS))
     }
-  }, []);
+  }, [onGetCurrentUser]);
   return (
     <div className="App">
       <HeaderComponent currentUserData={currentUserData} isFetching={isFetching} />
@@ -36,6 +37,7 @@ export const App = ({currentUserData, isFetching, onGetCurrentUser}) => {
           <Route exact path="/profiles/:id" component={Profile} />
           <Route path="/about" render={() => <h1>About</h1>} />
           <Route exact path="/articles" component={ArticlesComponent} />
+          <Route exact path="/articles/:id" component={ArticleComponent} />
           <Route path="/create-article" component={CreateArticlesComponent} />
           <Route path="*"><NotFoundComponent /></Route>
         </Switch>
