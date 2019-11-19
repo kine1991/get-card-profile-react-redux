@@ -82,13 +82,13 @@ export const getArticleAsync = (id) => {
         dispatch(getArticleStart());
         const docRef = firestore.collection('articles').doc(id);
         docRef.get().then(querySnapshot => {
-            console.log('querySnapshot')
-            console.log(querySnapshot)
-            // let articles = []
+            console.log('querySnapshot', {id: querySnapshot.id, ...querySnapshot.data()})
+            // console.log(querySnapshot)
+            let article = {id: querySnapshot.id, ...querySnapshot.data()}
             // querySnapshot.forEach(doc => {
             //     articles.push({id: doc.id, ...doc.data()})
             // })
-            dispatch(getArticleSuccess('article'));
+            dispatch(getArticleSuccess(article));
         }).catch(error => {
             dispatch(getArticleFailure(error));
         });
