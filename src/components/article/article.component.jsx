@@ -13,7 +13,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { getArticleAsync } from '../../redux/article/article.action'
 
 
-const ArticleComponent = ({article, isFetching, onGetArticle}) => {
+const ArticleComponent = ({article, onGetArticle}) => {
     const { id } = useParams();
 
     React.useEffect(() => {

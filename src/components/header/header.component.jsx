@@ -1,33 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  container: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    boxShadow: '0 0 10px rgba(0,0,0,0.5)',
-    height: '5rem'
-    // background: 'red'
-  },
-  group: {
-    display: 'flex',
-    listStyleType: 'none'
-    // marginLeft: '3rem'
-    // justifyContent: 'flex-end'
-  },
-  list: {
-    padding: '2rem'
-  },
-  link: {
-    textDecoration: 'none',
-    color: 'black'
-  }
-});
+import { useStyles } from './header.styles'
+import Switch from '@material-ui/core/Switch';
 
 
 const HeaderComponent = ({currentUserData, isFetching}) => {
+
+    const [isDark, setIsDark] = React.useState(false)
+
     const classes = useStyles();
     let links
     if(currentUserData){
@@ -48,16 +30,31 @@ const HeaderComponent = ({currentUserData, isFetching}) => {
         ];
     }
 
-
+    const handleChange = event => {
+        setIsDark(event.target.checked);
+    };
+    // const handleChange = name => event => {
+    //     setIsDark({ ...state, [name]: event.target.checked });
+    // };
+    React.useEffect(() => {
+        console.log(isDark)
+    }, [isDark])
 
     return (
         <div className={classes.container}>
+            <div style={{marginLeft: '2rem'}}>
+                <Switch onChange={handleChange}/>
+            </div>
             {
                 isFetching 
                 ? 
                 null
                 :
-                <ul className={classes.group}>
+                <ul className={classes.group}  style={{marginLeft: 'auto'}}>
+                    {/* <li className={classes.list}>
+                        <Switch/>
+                    </li> */}
+                    {/* <div style={{marginRight: 'auto auto'}}> ff</div> */}
                     {
                         links
                         .map(item => (
@@ -78,27 +75,6 @@ const HeaderComponent = ({currentUserData, isFetching}) => {
                             </>
                         ) : null
                     }
-                    {/* <li className={classes.list}>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/about">About</Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/profiles">Profiles</Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/articles">Articles</Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/create-article">Create Article</Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/sign-in">Sign In</Link>
-                    </li>
-                    <li className={classes.list}>
-                        <Link to="/sign-up">Sign Up</Link>
-                    </li> */}
                 </ul>
 
             }
@@ -106,5 +82,17 @@ const HeaderComponent = ({currentUserData, isFetching}) => {
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        isDark: state.pallete.isDark
+    }
+}
 
-export default HeaderComponent;
+const mapDispatchToProps = dispatch => {
+    return {
+        
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);

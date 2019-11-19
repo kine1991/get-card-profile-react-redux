@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import HeaderComponent from './components/header/header.component';
+import Header2 from './components/header2/header2.component'
 import Profiles from './components/profiles/profiles.component';
 import Profile from './components/profile/profile.component';
 import ArticlesComponent from './components/articles/articles.component';
@@ -28,6 +29,7 @@ export const App = ({currentUserData, isFetching, onGetCurrentUser}) => {
   }, [onGetCurrentUser]);
   return (
     <div className="App">
+      {/* <Header2/> */}
       <HeaderComponent currentUserData={currentUserData} isFetching={isFetching} />
       <div style={{margin: '30px'}}>
         <Switch>
