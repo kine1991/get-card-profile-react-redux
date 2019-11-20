@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useStyles } from './global-theme.styles'
+import { useStyles } from './global-theme.styles';
 
 
 

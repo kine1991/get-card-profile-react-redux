@@ -19,6 +19,7 @@ import GlobalThemeComponent from './components/global-theme/global-theme.compone
 // import { useStyles } from './App.styles'
 
 import { getCurrentUserAsync } from './redux/user/user.action';
+import PaletteComponent from './components/palette/palette.component';
 
 export const App = ({currentUserData, isFetching, isDarkMode, currentColor, onGetCurrentUser}) => {
   // console.log('App++++')
@@ -75,7 +76,7 @@ export const App = ({currentUserData, isFetching, isDarkMode, currentColor, onGe
               <Route exact path="/articles" component={ArticlesComponent} />
               <Route exact path="/articles/:id" component={ArticleComponent} />
               <Route path="/create-article" component={CreateArticlesComponent} />
-              <Route path="/settings/palette" component={CreateArticlesComponent} />
+              <Route path="/settings/palette" component={PaletteComponent} />
               <Route path="*"><NotFoundComponent /></Route>
             </Switch>
           {/* </div> */}

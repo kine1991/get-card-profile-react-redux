@@ -18,6 +18,7 @@ const HeaderComponent = ({currentUserData, isDarkMode, onToggleDarkMode, isFetch
             {name: 'Profiles', link: '/profiles'},
             {name: 'Articles', link: '/articles'},
             {name: 'Create Article', link: '/create-article'},
+            {name: 'Palette', link: '/settings/palette'},
         ];
     } else {
         links = [

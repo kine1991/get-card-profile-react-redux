@@ -1,7 +1,7 @@
 import { makeStyles} from '@material-ui/core/styles';
 
  export const useStyles = makeStyles(theme => {
-    console.log('props Global', theme)
+    // console.log('props Global', theme)
     return {
       container: {
         // backgroundColor: 'pink',
@@ -12,6 +12,7 @@ import { makeStyles} from '@material-ui/core/styles';
         // padding: '0',
         minHeight: '100vh',
         width: '100%',
+        // padding: '2rem'
         paddingTop: '2rem'
         // marginBottom: '0'
       }
