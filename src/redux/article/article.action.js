@@ -44,7 +44,6 @@ const getArticlesFailure = (error) => ({
 
 export const getArticlesAsync = () => {
     return dispatch => {
-        console.log('getArticlesAsync')
         dispatch(getArticlesStart());
         const collectionRef = firestore.collection('articles');
         collectionRef.get().then(querySnapshot => {
@@ -76,13 +75,13 @@ const getArticleFailure = (error) => ({
 });
 
 export const getArticleAsync = (id) => {
-    console.log(id)
+    // console.log(id)
     return dispatch => {
-        console.log('docRef')
+        // console.log('docRef')
         dispatch(getArticleStart());
         const docRef = firestore.collection('articles').doc(id);
         docRef.get().then(querySnapshot => {
-            console.log('querySnapshot', {id: querySnapshot.id, ...querySnapshot.data()})
+            // console.log('querySnapshot', {id: querySnapshot.id, ...querySnapshot.data()})
             // console.log(querySnapshot)
             let article = {id: querySnapshot.id, ...querySnapshot.data()}
             // querySnapshot.forEach(doc => {
@@ -113,14 +112,11 @@ const deleteArticlesFailure = (error) => ({
 });
 
 export const deleteArticleAsync = (id) => {
-    console.log(id)
     return dispatch => {
         dispatch(deleteArticlesStart());
         firestore.collection("articles").doc(id.toString()).delete().then(() => {
-            console.log('delete')
             dispatch(deleteArticlesSuccess(id));
         }).catch((error) => {
-            console.log('errror', error)
             dispatch(deleteArticlesFailure(error));
         });
     }

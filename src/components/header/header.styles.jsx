@@ -1,13 +1,23 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => {
+  return {
     container: {
       display: 'flex',
-    //   justifyContent: 'flex-end',
+      //   justifyContent: 'flex-end',
       alignItems: 'center',
       boxShadow: '0 0 10px rgba(0,0,0,0.5)',
-      height: '5rem'
-      // background: 'red'
+      height: '5rem',
+      backgroundColor: theme.backgroundHeader,
+      color: theme.colorHeader,
+
+      // color: theme.colorHeader,
+      // color: props => props.color,
+      // backgroundColor: props => props.isDarkMode ? 'black' : 'green',
+      // backgroundColor: props => {
+      //   console.log(props)
+      //   return props ? 'black' : 'pink'
+      // }
     },
     group: {
       display: 'flex',
@@ -22,4 +32,5 @@ export const useStyles = makeStyles({
       textDecoration: 'none',
       color: 'black'
     }
-  });
+  }
+})

@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-
-import { useStyles } from './header.styles'
 import Switch from '@material-ui/core/Switch';
 
+import { useStyles } from './header.styles';
+import { toggleDarkMode } from '../../redux/palette/palette.action';
 
-const HeaderComponent = ({currentUserData, isFetching}) => {
 
-    const [isDark, setIsDark] = React.useState(false)
 
+const HeaderComponent = ({currentUserData, isDarkMode, onToggleDarkMode, isFetching}) => {
     const classes = useStyles();
     let links
     if(currentUserData){
@@ -31,14 +30,12 @@ const HeaderComponent = ({currentUserData, isFetching}) => {
     }
 
     const handleChange = event => {
-        setIsDark(event.target.checked);
+        onToggleDarkMode(event.target.checked);
     };
-    // const handleChange = name => event => {
-    //     setIsDark({ ...state, [name]: event.target.checked });
-    // };
-    React.useEffect(() => {
-        console.log(isDark)
-    }, [isDark])
+
+    // React.useEffect(() => {
+    //     // console.log(isDarkMode)
+    // }, [isDarkMode])
 
     return (
         <div className={classes.container}>
@@ -51,10 +48,6 @@ const HeaderComponent = ({currentUserData, isFetching}) => {
                 null
                 :
                 <ul className={classes.group}  style={{marginLeft: 'auto'}}>
-                    {/* <li className={classes.list}>
-                        <Switch/>
-                    </li> */}
-                    {/* <div style={{marginRight: 'auto auto'}}> ff</div> */}
                     {
                         links
                         .map(item => (
@@ -84,13 +77,13 @@ const HeaderComponent = ({currentUserData, isFetching}) => {
 
 const mapStateToProps = state => {
     return {
-        isDark: state.pallete.isDark
+        isDarkMode: state.palette.isDarkMode
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        
+        onToggleDarkMode: (mode) => dispatch(toggleDarkMode(mode))
     }
 }
 

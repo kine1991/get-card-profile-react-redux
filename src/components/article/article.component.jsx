@@ -22,19 +22,37 @@ const ArticleComponent = ({article, onGetArticle}) => {
 
     const classes = useStyles();
 
-    console.log(article)
-    return !article ? <SpinnerComponent/> :
-    (
+    return (
         <div className={classes.container}>
-            <Button to="/articles" component={Link} className={classes.button} variant="contained" startIcon={<ArrowBackIcon/>} color="primary">Back</Button>
-            <h1>{article.title}</h1>
-            <div className={classes.dateAndUser}>
-                <Typography variant="caption" display="block" gutterBottom>{article.user.email}</Typography>
-                <Typography variant="caption" display="block" gutterBottom><Moment format="YYYY.MM.DD" date={article.date} /></Typography>
-            </div >
-            <p>{article.body}</p>
+            {!!article ? 
+                (
+                        <>
+                        <Button to="/articles" component={Link} className={classes.button} variant="contained" startIcon={<ArrowBackIcon/>} color="primary">Back</Button>
+                        <h1>{article.title}</h1>
+                        <div className={classes.dateAndUser}>
+                            <Typography variant="caption" display="block" gutterBottom>{article.user.email}</Typography>
+                            <Typography variant="caption" display="block" gutterBottom><Moment format="YYYY.MM.DD" date={article.date} /></Typography>
+                        </div >
+                        <p>{article.body}</p>
+                    </>
+
+                ): <SpinnerComponent/> 
+            }
         </div>
     )
+
+    // return !article ? <SpinnerComponent/> :
+    // (
+    //     <div className={classes.container}>
+            // <Button to="/articles" component={Link} className={classes.button} variant="contained" startIcon={<ArrowBackIcon/>} color="primary">Back</Button>
+            // <h1>{article.title}</h1>
+            // <div className={classes.dateAndUser}>
+            //     <Typography variant="caption" display="block" gutterBottom>{article.user.email}</Typography>
+            //     <Typography variant="caption" display="block" gutterBottom><Moment format="YYYY.MM.DD" date={article.date} /></Typography>
+            // </div >
+            // <p>{article.body}</p>
+    //     </div>
+    // )
 }
 
 const mapStateToProps = state => {

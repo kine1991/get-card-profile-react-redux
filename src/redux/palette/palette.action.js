@@ -1,5 +1,6 @@
 import paletteActionTypes from './palette.types';
 
-export const  setIsDarkMode = () => ({
-    type: paletteActionTypes.SET_IS_DARK_MODE,
+export const  toggleDarkMode = (mode) => ({
+    type: paletteActionTypes.TOGGLE_DARK_MODE,
+    payload: mode
 });
