@@ -1,5 +1,4 @@
 import { makeStyles} from '@material-ui/core/styles';
-import { flexbox } from '@material-ui/system';
 
  export const useStyles = makeStyles(theme => {
     return {
@@ -10,13 +9,20 @@ import { flexbox } from '@material-ui/system';
         
       },
       copyButton: {
-          border: '1px solid black',
-          backgroundColor: 'rgba(255,255,255, 0.3)',
-          position: "absolute",
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          padding: '1rem',
+        // border: '1px solid black',
+        backgroundColor: 'rgba(255,255,255, 0.3)',
+        position: "absolute",
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        padding: '1rem 2rem',
+
+        [theme.breakpoints.down('sm')]: {
+            padding: '0.5rem 2rem'
+        },
+        [theme.breakpoints.down('xs')]: {
+            padding: '0 2rem'
+        },
 
         //   display: 'flex',
         //   justifyContent: 'center',
