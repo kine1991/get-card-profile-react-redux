@@ -5,7 +5,7 @@ import { useStyles } from './palette-mini.styles'
 
 const PaletteMiniComponent = ({palette, history}) => {
     const {emoji, paletteName, colors} = palette
-    console.log(history)
+    // console.log(history)
 
     const classes = useStyles();
     
