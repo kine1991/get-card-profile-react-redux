@@ -1,4 +1,5 @@
 import { makeStyles} from '@material-ui/core/styles';
+import chroma from "chroma-js";
 
  export const useStyles = makeStyles(theme => {
     return {
@@ -23,6 +24,7 @@ import { makeStyles} from '@material-ui/core/styles';
         [theme.breakpoints.down('xs')]: {
             padding: '0 2rem'
         },
+        color: props => chroma(props.background).luminance() >= 0.7 ? "black" : "white"
 
         //   display: 'flex',
         //   justifyContent: 'center',
@@ -34,7 +36,8 @@ import { makeStyles} from '@material-ui/core/styles';
         left: '0',
         textTransform: 'uppercase',
         fontSize: '12px',
-        paddingLeft: '10px'
+        paddingLeft: '10px',
+        color: props => chroma(props.background).luminance() >= 0.7 ? "black" : "white",
         // backgroundColor: 'rgba(255,255,255, 0.3)',
       }
     //   copyButton: {

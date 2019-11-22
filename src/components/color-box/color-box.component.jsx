@@ -4,7 +4,7 @@ import { useStyles } from './color-box.styles'
 
 const ColorBoxComponent = ({background, name}) => {
 
-    const classes = useStyles();
+    const classes = useStyles({background});
     // console.log(color)
     return (
         <div className={classes.colorBoxContainer} style={{backgroundColor: background}}>

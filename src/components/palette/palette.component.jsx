@@ -2,9 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import Slider from '@material-ui/core/Slider';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -13,7 +11,7 @@ import ColorBoxComponent from '../color-box/color-box.component';
 import { useStyles } from './palette.styles';
 import { generatePalette } from '../../utils/colorHelpers';
 
-import chroma from "chroma-js";
+// import chroma from "chroma-js";
 
 
 const PaletteComponent = () => {
@@ -34,19 +32,9 @@ const PaletteComponent = () => {
 
     const classes = useStyles();
 
-    const colorBox = getSinglePaletteByLevel.map(color => {
-        return (
-            <ColorBoxComponent
-                key={color.name}
-                name={color.name}
-                background={color[format]}
-                // showingFullPalette={false}
-                />
-        )
-    });
-    // const colorBox = getSinglePaletteByLevel.map(color => (
-    //     <ColorBoxComponent key={color.name} color={color}/>
-    // ));
+    const colorBox = getSinglePaletteByLevel.map(color => (
+        <ColorBoxComponent key={color.name} name={color.name} background={color[format]}  /*showingFullPalette={false}*/ />
+    ));
 
 
     const handleChangeLevel = (e, value) => {
