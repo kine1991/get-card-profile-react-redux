@@ -22,7 +22,7 @@ import { makeStyles} from '@material-ui/core/styles';
         display: 'grid',
         gridTemplateColumns: "repeat(4, 1fr)",
         height: "100vh",
-        marginTop: '-2rem',
+        // marginTop: '-2rem',
         
         [theme.breakpoints.down('sm')]: {
         color: 'green',
@@ -32,6 +32,10 @@ import { makeStyles} from '@material-ui/core/styles';
         gridTemplateColumns: "repeat(1, 1fr)",
         },
 
+      },
+      slider: {
+        padding: '2rem',
+        width: '500px'
       }
     }
   });
