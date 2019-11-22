@@ -18,7 +18,7 @@ import { makeStyles} from '@material-ui/core/styles';
         padding: '1rem 2rem',
 
         [theme.breakpoints.down('sm')]: {
-            padding: '0.5rem 2rem'
+            padding: '0.5rem 1rem'
         },
         [theme.breakpoints.down('xs')]: {
             padding: '0 2rem'
@@ -28,6 +28,15 @@ import { makeStyles} from '@material-ui/core/styles';
         //   justifyContent: 'center',
         //   alignItems: 'center'
       },
+      title: {
+        position: "absolute",
+        bottom: '0',
+        left: '0',
+        textTransform: 'uppercase',
+        fontSize: '12px',
+        paddingLeft: '10px'
+        // backgroundColor: 'rgba(255,255,255, 0.3)',
+      }
     //   copyButton: {
     //     color: props =>
     //       chroma(props.background).luminance() >= 0.7 ? "rgba(0,0,0,0.6)" : "white",

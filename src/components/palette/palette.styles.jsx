@@ -25,17 +25,32 @@ import { makeStyles} from '@material-ui/core/styles';
         // marginTop: '-2rem',
         
         [theme.breakpoints.down('sm')]: {
-        color: 'green',
-        gridTemplateColumns: "repeat(2, 1fr)",
+          gridTemplateColumns: "repeat(2, 1fr)",
         },
         [theme.breakpoints.down('xs')]: {
-        gridTemplateColumns: "repeat(1, 1fr)",
+          gridTemplateColumns: "repeat(1, 1fr)",
+          height: "140vh",
         },
 
       },
+      headerPalette: {
+        backgroundColor: 'grey',
+        display: 'flex',
+        justifyContent: 'space-between'
+      },
+      sliderContainer: {
+        // padding: '2rem',
+        display: 'flex',
+        alignItems: 'center',
+        width: '500px',
+        // padding: '0 1rem'
+      },
       slider: {
-        padding: '2rem',
-        width: '500px'
+        margin: '0rem 1rem'
+      },
+      selectContainer: {
+        padding: '1rem',
+        margin: '0 1rem',
       }
     }
   });
