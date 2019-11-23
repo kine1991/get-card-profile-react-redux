@@ -4,9 +4,11 @@ import chroma from "chroma-js";
  export const useStyles = makeStyles(theme => {
     return {
       colorBoxContainer: {
-          position: 'relative'
+          position: 'relative',
         // flex: '30%'
         // height: '100%',
+        // transform: 'scale(40)'
+        // transition: 'all 0.5s ease-out',
         
       },
       copyButton: {
@@ -16,7 +18,16 @@ import chroma from "chroma-js";
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        padding: '1rem 2rem',
+        // padding: '1rem 2rem',
+        // transform: 'scale(2)',
+        padding: props => props.copied ? '0': '1rem 2rem',
+        height: props => props.copied ? '100%': null,
+        width: props => props.copied ? '100%': null,
+        // margin: 'auto auto',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        transition: 'all 0.3s',
 
         [theme.breakpoints.down('sm')]: {
             padding: '0.5rem 1rem'
@@ -24,7 +35,9 @@ import chroma from "chroma-js";
         [theme.breakpoints.down('xs')]: {
             padding: '0 2rem'
         },
-        color: props => chroma(props.background).luminance() >= 0.7 ? "black" : "white"
+        color: props => chroma(props.background).luminance() >= 0.7 ? "black" : "white",
+        color: props => props.copied ? 'grey': null,
+        // fontSize: props => props.copied ? '28px': null,
 
         //   display: 'flex',
         //   justifyContent: 'center',
@@ -39,6 +52,9 @@ import chroma from "chroma-js";
         paddingLeft: '10px',
         color: props => chroma(props.background).luminance() >= 0.7 ? "black" : "white",
         // backgroundColor: 'rgba(255,255,255, 0.3)',
+        // color: props => props.copied ? 'black': 'green' ,
+        // transition: 'all 0.5s ease-out',
+        
       }
     //   copyButton: {
     //     color: props =>
