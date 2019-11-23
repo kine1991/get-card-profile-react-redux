@@ -5,8 +5,8 @@ import './App.css';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme,/* makeStyles*/} from '@material-ui/core/styles';
 
-import HeaderComponent from './components/header/header.component';
-// import Header2 from './components/header2/header2.component'
+// import HeaderComponent from './components/header/header.component';
+import Header2 from './components/header2/header2.component'
 import Profiles from './components/profiles/profiles.component';
 import Profile from './components/profile/profile.component';
 import ArticlesComponent from './components/articles/articles.component';
@@ -24,8 +24,6 @@ import PaletteComponent from './components/palette/palette.component';
 // import PaletteComponent from './components/palette-list/palette-list.component';
 
 export const App = ({currentUserData, isFetching, isDarkMode, currentColor, onGetCurrentUser}) => {
-  // console.log('App++++')
-  // console.log(isDarkMode)
 
   const theme = createMuiTheme({
     backgroundMain: isDarkMode ? currentColor.darkTheme.backgroundMain: currentColor.lightTheme.backgroundMain,
@@ -45,28 +43,13 @@ export const App = ({currentUserData, isFetching, isDarkMode, currentColor, onGe
     // console.log(isDarkMode)
   }, [isDarkMode])
 
-  // const classes = useStyles(isDarkMode);
-
-  // const useStyles = makeStyles(theme => {
-  //   console.log('props App', theme)
-  //   return {
-  //     container: {
-  //       backgroundColor: 'brown',
-  //       color: 'blue',
-  //       // backgroundColor: theme.backgroundMain,
-  //       // color: theme.colorMain,
-  //     }
-  //   }
-  // });
-
-  // const classes = useStyles();
-
   return (
     
     
     // <div className="App" >
       <ThemeProvider theme={theme}>
-        <HeaderComponent currentUserData={currentUserData} isFetching={isFetching} />
+        {/* <HeaderComponent currentUserData={currentUserData} isFetching={isFetching} /> */}
+        <Header2 currentUserData={currentUserData} isFetching={isFetching} />
         <GlobalThemeComponent>
           {/* <div style={{padding: '30px'}}> */}
             <Switch>

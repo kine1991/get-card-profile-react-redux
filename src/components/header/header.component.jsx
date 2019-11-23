@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Switch from '@material-ui/core/Switch';
 
@@ -44,9 +44,7 @@ const HeaderComponent = ({currentUserData, isDarkMode, onToggleDarkMode, isFetch
                 <Switch onChange={handleChange}/>
             </div>
             {
-                isFetching 
-                ? 
-                null
+                isFetching ? null
                 :
                 <ul className={classes.group}  style={{marginLeft: 'auto'}}>
                     {
